@@ -12,6 +12,7 @@ import Base64 from "./pages/Base64";
 import UrlEncode from "./pages/UrlEncode";
 import SqlFormatter from "./pages/SqlFormatter";
 import RandomString from "./pages/RandomString";
+import DeviceToIp from "./pages/DeviceToIp";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/url-encode" element={<UrlEncode />} />
             <Route path="/sql-formatter" element={<SqlFormatter />} />
             <Route path="/random-string" element={<RandomString />} />
+            <Route path="/device-to-ip" element={<DeviceToIp />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
