@@ -10,6 +10,8 @@ import AudioCompress from "./pages/AudioCompress";
 import StringEscape from "./pages/StringEscape";
 import Base64 from "./pages/Base64";
 import UrlEncode from "./pages/UrlEncode";
+import SqlFormatter from "./pages/SqlFormatter";
+import RandomString from "./pages/RandomString";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
