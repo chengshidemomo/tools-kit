@@ -8,13 +8,17 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Copy, RotateCcw, Shuffle } from "lucide-react";
 
+const COMMON_SYMBOLS = ".-_+=*";
+const AMBIGUOUS_SYMBOLS = "@#$%^&!?(){}[]|;:,<>/\\\"'`~";
+
 export default function RandomString() {
   const [length, setLength] = useState(16);
   const [count, setCount] = useState(1);
   const [useUpper, setUseUpper] = useState(true);
   const [useLower, setUseLower] = useState(true);
   const [useDigits, setUseDigits] = useState(true);
-  const [useSymbols, setUseSymbols] = useState(false);
+  const [useCommonSymbols, setUseCommonSymbols] = useState(false);
+  const [useAmbiguousSymbols, setUseAmbiguousSymbols] = useState(false);
   const [excludeSimilar, setExcludeSimilar] = useState(false);
   const [output, setOutput] = useState("");
   const { toast } = useToast();
@@ -24,7 +28,8 @@ export default function RandomString() {
     if (useUpper) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     if (useLower) charset += "abcdefghijklmnopqrstuvwxyz";
     if (useDigits) charset += "0123456789";
-    if (useSymbols) charset += "!@#$%^&*()_+-=[]{}|;:,.<>?";
+    if (useCommonSymbols) charset += COMMON_SYMBOLS;
+    if (useAmbiguousSymbols) charset += AMBIGUOUS_SYMBOLS;
     if (excludeSimilar) charset = charset.replace(/[il1Lo0O]/g, "");
 
     if (!charset) {
@@ -102,11 +107,21 @@ export default function RandomString() {
               <Switch id="digits" checked={useDigits} onCheckedChange={setUseDigits} />
             </div>
             <div className="flex items-center justify-between p-3 rounded-md border border-border">
-              <Label htmlFor="symbols">特殊符号</Label>
-              <Switch id="symbols" checked={useSymbols} onCheckedChange={setUseSymbols} />
+              <Label htmlFor="common-symbols" className="flex flex-col gap-0.5">
+                <span>常见符号</span>
+                <span className="text-xs text-muted-foreground font-mono">{COMMON_SYMBOLS}</span>
+              </Label>
+              <Switch id="common-symbols" checked={useCommonSymbols} onCheckedChange={setUseCommonSymbols} />
             </div>
-            <div className="flex items-center justify-between p-3 rounded-md border border-border md:col-span-2">
-              <Label htmlFor="similar">排除易混淆 (i,l,1,L,o,0,O)</Label>
+            <div className="flex items-center justify-between p-3 rounded-md border border-border">
+              <Label htmlFor="ambiguous-symbols" className="flex flex-col gap-0.5">
+                <span>歧义符号</span>
+                <span className="text-xs text-muted-foreground font-mono truncate max-w-[180px]">@#$%^&!?...</span>
+              </Label>
+              <Switch id="ambiguous-symbols" checked={useAmbiguousSymbols} onCheckedChange={setUseAmbiguousSymbols} />
+            </div>
+            <div className="flex items-center justify-between p-3 rounded-md border border-border md:col-span-3">
+              <Label htmlFor="similar">排除易混淆字符 (i, l, 1, L, o, 0, O)</Label>
               <Switch id="similar" checked={excludeSimilar} onCheckedChange={setExcludeSimilar} />
             </div>
           </div>

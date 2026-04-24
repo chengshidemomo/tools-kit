@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
+import { ThemeToggle } from "./ThemeToggle";
 import { Menu } from "lucide-react";
 
 interface LayoutProps {
@@ -23,6 +24,8 @@ export function Layout({ children }: LayoutProps) {
               <h2 className="text-lg font-semibold text-foreground">现代化工具合集</h2>
               <p className="text-sm text-muted-foreground">高效的开发者工具箱</p>
             </div>
+
+            <ThemeToggle />
           </header>
 
           {/* Main Content */}
