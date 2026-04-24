@@ -30,6 +30,8 @@ const App = () => (
             <Route path="/string-escape" element={<StringEscape />} />
             <Route path="/base64" element={<Base64 />} />
             <Route path="/url-encode" element={<UrlEncode />} />
+            <Route path="/sql-formatter" element={<SqlFormatter />} />
+            <Route path="/random-string" element={<RandomString />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
