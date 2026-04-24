@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Layout } from "./components/Layout";
+import { ThemeProvider } from "./components/ThemeProvider";
 import Home from "./pages/Home";
 import JsonFormatter from "./pages/JsonFormatter";
 import AudioCompress from "./pages/AudioCompress";
@@ -19,11 +20,12 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Layout>
+    <ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/json-formatter" element={<JsonFormatter />} />
@@ -39,7 +41,8 @@ const App = () => (
           </Routes>
         </Layout>
       </BrowserRouter>
-    </TooltipProvider>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
