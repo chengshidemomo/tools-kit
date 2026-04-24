@@ -1,0 +1,15 @@
+# Build the image
+.git
+.github
+node_modules
+dist
+build
+.vscode
+.idea
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+coverage
+.cache
