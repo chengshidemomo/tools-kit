@@ -21,7 +21,6 @@ import {
   Home,
   Link,
   Network,
-  Settings,
   Shuffle,
   Sparkles,
 } from "lucide-react";
@@ -39,7 +38,6 @@ const toolsItems = [
 
 const mainItems = [
   { title: "首页", url: "/", icon: Home },
-  { title: "设置", url: "/settings", icon: Settings },
 ];
 
 export function AppSidebar() {
