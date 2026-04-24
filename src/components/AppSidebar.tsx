@@ -16,19 +16,21 @@ import {
   AudioLines,
   Braces,
   Code,
+  Database,
   FileText,
   Home,
-  Key,
   Link,
   Settings,
+  Shuffle,
   Sparkles,
 } from "lucide-react";
 
 const toolsItems = [
   { title: "音频压缩", url: "/audio-compress", icon: AudioLines, description: "MP3/M4A压缩" },
   { title: "JSON格式化", url: "/json-formatter", icon: Braces, description: "JSON美化和验证" },
+  { title: "SQL美化", url: "/sql-formatter", icon: Database, description: "SQL格式化工具" },
   { title: "字符串转义", url: "/string-escape", icon: FileText, description: "字符串编码转换" },
-  { title: "加密解密", url: "/crypto", icon: Key, description: "各种加密算法" },
+  { title: "随机字符串", url: "/random-string", icon: Shuffle, description: "生成随机密码/Token" },
   { title: "Base64编解码", url: "/base64", icon: Code, description: "Base64转换" },
   { title: "URL编解码", url: "/url-encode", icon: Link, description: "URL编码转换" },
 ];
