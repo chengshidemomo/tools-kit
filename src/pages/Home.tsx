@@ -6,9 +6,10 @@ import {
   AudioLines,
   Braces,
   Code,
+  Database,
   FileText,
-  Key,
   Link,
+  Shuffle,
   Sparkles,
   Zap,
   Shield,
@@ -33,12 +34,12 @@ const featuredTools = [
     features: ["语法验证", "美化格式", "压缩输出"]
   },
   {
-    title: "加密解密",
-    description: "支持多种加密算法，包括AES、RSA、MD5等",
-    icon: Key,
-    url: "/crypto",
-    category: "安全工具",
-    features: ["多种算法", "安全可靠", "批量处理"]
+    title: "SQL美化",
+    description: "格式化SQL语句，支持MySQL、PostgreSQL等多种方言",
+    icon: Database,
+    url: "/sql-formatter",
+    category: "数据库工具",
+    features: ["多种方言", "美化压缩", "关键字高亮"]
   },
   {
     title: "字符串转义",
@@ -51,6 +52,7 @@ const featuredTools = [
 ];
 
 const quickTools = [
+  { title: "随机字符串", icon: Shuffle, url: "/random-string" },
   { title: "Base64编解码", icon: Code, url: "/base64" },
   { title: "URL编解码", icon: Link, url: "/url-encode" },
 ];
