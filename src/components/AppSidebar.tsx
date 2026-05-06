@@ -14,19 +14,29 @@ import {
 } from "@/components/ui/sidebar";
 import {
   Braces,
+  Clock,
   Code,
   Database,
   FileText,
+  Fingerprint,
   Home,
   Link,
   Network,
+  QrCode,
+  Regex,
   Shuffle,
   Sparkles,
+  Timer,
 } from "lucide-react";
 
 const toolsItems = [
   { title: "JSON格式化", url: "/json-formatter", icon: Braces, description: "JSON美化和验证" },
-  { title: "SQL美化", url: "/sql-formatter", icon: Database, description: "转换为IN列表" },
+  { title: "SQL美化", url: "/sql-formatter", icon: Database, description: "格式化与IN列表" },
+  { title: "正则测试器", url: "/regex", icon: Regex, description: "实时匹配与分组" },
+  { title: "时间戳转换", url: "/timestamp", icon: Clock, description: "Unix时间互转" },
+  { title: "Cron表达式", url: "/cron", icon: Timer, description: "解析与下次执行" },
+  { title: "ID生成器", url: "/id-generator", icon: Fingerprint, description: "UUID与雪花ID" },
+  { title: "二维码生成", url: "/qrcode", icon: QrCode, description: "实时生成QR码" },
   { title: "字符串转义", url: "/string-escape", icon: FileText, description: "字符串编码转换" },
   { title: "随机字符串", url: "/random-string", icon: Shuffle, description: "生成随机密码/Token" },
   { title: "设备编号转IP", url: "/device-to-ip", icon: Network, description: "15位编号转IP" },
