@@ -13,6 +13,11 @@ import UrlEncode from "./pages/UrlEncode";
 import SqlFormatter from "./pages/SqlFormatter";
 import RandomString from "./pages/RandomString";
 import DeviceToIp from "./pages/DeviceToIp";
+import QrCode from "./pages/QrCode";
+import Timestamp from "./pages/Timestamp";
+import CronExpression from "./pages/CronExpression";
+import RegexTester from "./pages/RegexTester";
+import IdGenerator from "./pages/IdGenerator";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +39,11 @@ const App = () => (
             <Route path="/sql-formatter" element={<SqlFormatter />} />
             <Route path="/random-string" element={<RandomString />} />
             <Route path="/device-to-ip" element={<DeviceToIp />} />
+            <Route path="/qrcode" element={<QrCode />} />
+            <Route path="/timestamp" element={<Timestamp />} />
+            <Route path="/cron" element={<CronExpression />} />
+            <Route path="/regex" element={<RegexTester />} />
+            <Route path="/id-generator" element={<IdGenerator />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
