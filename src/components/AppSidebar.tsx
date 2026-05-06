@@ -13,11 +13,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import {
-  AudioLines,
   Braces,
   Code,
   Database,
-  FileText,
   Home,
   Link,
   Network,
@@ -26,7 +24,6 @@ import {
 } from "lucide-react";
 
 const toolsItems = [
-  { title: "音频压缩", url: "/audio-compress", icon: AudioLines, description: "MP3/M4A压缩" },
   { title: "JSON格式化", url: "/json-formatter", icon: Braces, description: "JSON美化和验证" },
   { title: "SQL美化", url: "/sql-formatter", icon: Database, description: "转换为IN列表" },
   { title: "字符串转义", url: "/string-escape", icon: FileText, description: "字符串编码转换" },

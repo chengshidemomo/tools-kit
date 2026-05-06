@@ -7,7 +7,6 @@ import { Layout } from "./components/Layout";
 import { ThemeProvider } from "./components/ThemeProvider";
 import Home from "./pages/Home";
 import JsonFormatter from "./pages/JsonFormatter";
-import AudioCompress from "./pages/AudioCompress";
 import StringEscape from "./pages/StringEscape";
 import Base64 from "./pages/Base64";
 import UrlEncode from "./pages/UrlEncode";
@@ -29,7 +28,6 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/json-formatter" element={<JsonFormatter />} />
-            <Route path="/audio-compress" element={<AudioCompress />} />
             <Route path="/string-escape" element={<StringEscape />} />
             <Route path="/base64" element={<Base64 />} />
             <Route path="/url-encode" element={<UrlEncode />} />
