@@ -16,6 +16,7 @@ import {
   Braces,
   Code,
   Database,
+  FileText,
   Home,
   Link,
   Network,
