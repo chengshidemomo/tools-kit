@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
 import {
-  AudioLines,
   Braces,
   Code,
   Database,
   FileText,
   Link,
+  Network,
   Shuffle,
   Sparkles,
   Zap,
@@ -18,12 +18,12 @@ import {
 
 const featuredTools = [
   {
-    title: "音频压缩",
-    description: "高效压缩MP3和M4A音频文件，减小文件大小同时保持音质",
-    icon: AudioLines,
-    url: "/audio-compress",
-    category: "媒体处理",
-    features: ["无损压缩", "批量处理", "格式转换"]
+    title: "SQL美化",
+    description: "格式化SQL语句并支持转换为IN列表，多种方言支持",
+    icon: Database,
+    url: "/sql-formatter",
+    category: "数据库工具",
+    features: ["IN列表转换", "美化压缩", "多种方言"]
   },
   {
     title: "JSON格式化",
@@ -34,20 +34,20 @@ const featuredTools = [
     features: ["语法验证", "美化格式", "压缩输出"]
   },
   {
-    title: "SQL美化",
-    description: "格式化SQL语句，支持MySQL、PostgreSQL等多种方言",
-    icon: Database,
-    url: "/sql-formatter",
-    category: "数据库工具",
-    features: ["多种方言", "美化压缩", "关键字高亮"]
+    title: "随机字符串",
+    description: "生成随机密码/Token，支持多种字符集组合",
+    icon: Shuffle,
+    url: "/random-string",
+    category: "开发工具",
+    features: ["自定义长度", "符号分类", "一键复制"]
   },
   {
-    title: "字符串转义",
-    description: "处理HTML、JavaScript、SQL等字符串转义",
-    icon: FileText,
-    url: "/string-escape",
-    category: "开发工具",
-    features: ["多语言支持", "批量转换", "实时预览"]
+    title: "设备编号转IP",
+    description: "将15位设备编号快速转换为 IP:Port 格式",
+    icon: Network,
+    url: "/device-to-ip",
+    category: "网络工具",
+    features: ["正则解析", "去除前导零", "批量处理"]
   },
 ];
 
