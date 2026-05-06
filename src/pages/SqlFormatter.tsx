@@ -80,7 +80,7 @@ export default function SqlFormatter() {
         <p className="text-muted-foreground">格式化SQL语句，并提供常用的SQL辅助子工具</p>
       </div>
 
-      <Tabs defaultValue="beautify" className="space-y-6">
+      <Tabs defaultValue="inlist" className="space-y-6">
         <TabsList className="grid w-full max-w-md grid-cols-2">
           <TabsTrigger value="beautify">
             <Sparkles className="w-4 h-4 mr-2" />
