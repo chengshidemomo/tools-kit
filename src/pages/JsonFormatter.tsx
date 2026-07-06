@@ -19,11 +19,31 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+function parseNestedJson(input: string, maxDepth = 10): any {
+  let result: any = JSON.parse(input);
+  let depth = 0;
+  while (
+    depth < maxDepth &&
+    typeof result === "string" &&
+    ((result.trimStart().startsWith("{") && result.trimEnd().endsWith("}")) ||
+      (result.trimStart().startsWith("[") && result.trimEnd().endsWith("]")))
+  ) {
+    try {
+      result = JSON.parse(result);
+      depth++;
+    } catch {
+      break;
+    }
+  }
+  return result;
+}
+
 export default function JsonFormatter() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const [error, setError] = useState("");
+  const [autoUnescape, setAutoUnescape] = useState(true);
   const { toast } = useToast();
 
   const formatJson = () => {
