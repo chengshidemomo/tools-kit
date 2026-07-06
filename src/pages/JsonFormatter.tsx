@@ -3,16 +3,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
-import { useToast } from "@/hooks/use-toast";
-import { 
-  Copy, 
-  Download, 
-  FileText, 
-  CheckCircle, 
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@#$#hooks/use-toast";
+import {
+  Copy,
+  Download,
+  FileText,
+  CheckCircle,
   AlertCircle,
   Minimize2,
   Maximize2,
-  RotateCcw
+  RotateCcw,
+  Layers
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
