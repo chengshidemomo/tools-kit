@@ -49,7 +49,7 @@ export default function JsonFormatter() {
   const parseInput = (): any => {
     if (autoUnescape) {
       return parseNestedJson(input);
-    — }
+    }
     return JSON.parse(input);
   };
 
