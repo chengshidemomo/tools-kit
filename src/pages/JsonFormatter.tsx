@@ -46,9 +46,16 @@ export default function JsonFormatter() {
   const [autoUnescape, setAutoUnescape] = useState(true);
   const { toast } = useToast();
 
+  const parseInput = (): any => {
+    if (autoUnescape) {
+      return parseNestedJson(input);
+    — }
+    return JSON.parse(input);
+  };
+
   const formatJson = () => {
     try {
-      const parsed = JSON.parse(input);
+      const parsed = parseInput();
       const formatted = JSON.stringify(parsed, null, 2);
       setOutput(formatted);
       setIsValid(true);
@@ -66,7 +73,7 @@ export default function JsonFormatter() {
 
   const minifyJson = () => {
     try {
-      const parsed = JSON.parse(input);
+      const parsed = parseInput();
       const minified = JSON.stringify(parsed);
       setOutput(minified);
       setIsValid(true);
@@ -84,7 +91,7 @@ export default function JsonFormatter() {
 
   const validateJson = () => {
     try {
-      JSON.parse(input);
+      parseInput();
       setIsValid(true);
       setError("");
       toast({
