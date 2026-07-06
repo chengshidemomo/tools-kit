@@ -141,8 +141,17 @@ export default function JsonFormatter() {
   }
 }`;
 
+  const nestedSample = '{"data": "{\\"user\\":{\\"id\\":1,\\"name\\":\\"张三\\"}}"}';
+
   const loadSample = () => {
     setInput(sampleJson);
+    setIsValid(null);
+    setError("");
+    setOutput("");
+  };
+
+  const loadNestedSample = () => {
+    setInput(nestedSample);
     setIsValid(null);
     setError("");
     setOutput("");
