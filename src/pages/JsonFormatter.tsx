@@ -275,7 +275,7 @@ export default function JsonFormatter() {
           <CardTitle>功能特点</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
                 <CheckCircle className="w-4 h-4 text-primary" />
@@ -301,6 +301,15 @@ export default function JsonFormatter() {
               <div>
                 <h4 className="font-medium">数据压缩</h4>
                 <p className="text-sm text-muted-foreground">移除空格，减小文件大小</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                <Layers className="w-4 h-4 text-primary" />
+              </div>
+              <div>
+                <h4 className="font-medium">嵌套解析</h4>
+                <p className="text-sm text-muted-foreground">自动解开多层JSON字符串</p>
               </div>
             </div>
           </div>
