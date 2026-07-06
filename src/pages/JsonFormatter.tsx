@@ -3,29 +3,86 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { 
-  Copy, 
-  Download, 
-  FileText, 
-  CheckCircle, 
+import {
+  Copy,
+  Download,
+  FileText,
+  CheckCircle,
   AlertCircle,
   Minimize2,
   Maximize2,
-  RotateCcw
+  RotateCcw,
+  Layers
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+function tryParseJson(value: string): any | null {
+  const trimmed = value.trim();
+  if (
+    (trimmed.startsWith("{") && trimmed.endsWith("}")) ||
+    (trimmed.startsWith("[") && trimmed.endsWith("]"))
+  ) {
+    try {
+      return JSON.parse(trimmed);
+    } catch {
+      return null;
+    }
+  }
+  return null;
+}
+
+function deepParseNested(value: any, maxDepth = 10, currentDepth = 0): any {
+  if (currentDepth >= maxDepth) return value;
+
+  if (typeof value === "string") {
+    const parsed = tryParseJson(value);
+    if (parsed !== null) {
+      return deepParseNested(parsed, maxDepth, currentDepth + 1);
+    }
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => deepParseNested(item, maxDepth, currentDepth + 1));
+  }
+
+  if (value !== null && typeof value === "object") {
+    const result: Record<string, any> = {};
+    for (const key of Object.keys(value)) {
+      result[key] = deepParseNested(value[key], maxDepth, currentDepth + 1);
+    }
+    return result;
+  }
+
+  return value;
+}
+
+function parseNestedJson(input: string, maxDepth = 10): any {
+  const parsed = JSON.parse(input);
+  return deepParseNested(parsed, maxDepth, 0);
+}
 
 export default function JsonFormatter() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const [error, setError] = useState("");
+  const [autoUnescape, setAutoUnescape] = useState(true);
   const { toast } = useToast();
+
+  const parseInput = (): any => {
+    if (autoUnescape) {
+      return parseNestedJson(input);
+    }
+    return JSON.parse(input);
+  };
 
   const formatJson = () => {
     try {
-      const parsed = JSON.parse(input);
+      const parsed = parseInput();
       const formatted = JSON.stringify(parsed, null, 2);
       setOutput(formatted);
       setIsValid(true);
@@ -43,7 +100,7 @@ export default function JsonFormatter() {
 
   const minifyJson = () => {
     try {
-      const parsed = JSON.parse(input);
+      const parsed = parseInput();
       const minified = JSON.stringify(parsed);
       setOutput(minified);
       setIsValid(true);
@@ -61,7 +118,7 @@ export default function JsonFormatter() {
 
   const validateJson = () => {
     try {
-      JSON.parse(input);
+      parseInput();
       setIsValid(true);
       setError("");
       toast({
@@ -111,8 +168,17 @@ export default function JsonFormatter() {
   }
 }`;
 
+  const nestedSample = '{"data": "{\\"user\\":{\\"id\\":1,\\"name\\":\\"张三\\"}}"}';
+
   const loadSample = () => {
     setInput(sampleJson);
+    setIsValid(null);
+    setError("");
+    setOutput("");
+  };
+
+  const loadNestedSample = () => {
+    setInput(nestedSample);
     setIsValid(null);
     setError("");
     setOutput("");
@@ -129,7 +195,7 @@ export default function JsonFormatter() {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <Button onClick={formatJson} className="bg-gradient-primary hover:bg-primary-hover">
           <Maximize2 className="w-4 h-4 mr-2" />
           格式化
@@ -146,10 +212,22 @@ export default function JsonFormatter() {
           <FileText className="w-4 h-4 mr-2" />
           示例数据
         </Button>
+        <Button onClick={loadNestedSample} variant="ghost">
+          <Layers className="w-4 h-4 mr-2" />
+          嵌套示例
+        </Button>
         <Button onClick={clearAll} variant="ghost">
           <RotateCcw className="w-4 h-4 mr-2" />
           清空
         </Button>
+        <div className="flex items-center space-x-2 ml-auto">
+          <Switch
+            id="nested-mode"
+            checked={autoUnescape}
+            onCheckedChange={setAutoUnescape}
+          />
+          <Label htmlFor="nested-mode" className="cursor-pointer">嵌套解析</Label>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -224,7 +302,7 @@ export default function JsonFormatter() {
           <CardTitle>功能特点</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
                 <CheckCircle className="w-4 h-4 text-primary" />
@@ -250,6 +328,15 @@ export default function JsonFormatter() {
               <div>
                 <h4 className="font-medium">数据压缩</h4>
                 <p className="text-sm text-muted-foreground">移除空格，减小文件大小</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center">
+                <Layers className="w-4 h-4 text-primary" />
+              </div>
+              <div>
+                <h4 className="font-medium">嵌套解析</h4>
+                <p className="text-sm text-muted-foreground">自动解开多层JSON字符串</p>
               </div>
             </div>
           </div>
