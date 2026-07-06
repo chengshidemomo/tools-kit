@@ -168,12 +168,12 @@ export default function JsonFormatter() {
       </div>
 
       {/* Action Buttons */}
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap items-center gap-3">
         <Button onClick={formatJson} className="bg-gradient-primary hover:bg-primary-hover">
           <Maximize2 className="w-4 h-4 mr-2" />
           格式化
         </Button>
-        <Button onClick={minifyJson} variant="outline">
+        <Button onClick={minifyJsonProperty} variant="outline">
           <Minimize2 className="w-4 h-4 mr-2" />
           压缩
         </Button>
@@ -185,10 +185,22 @@ export default function JsonFormatter() {
           <FileText className="w-4 h-4 mr-2" />
           示例数据
         </Button>
+        <Button onClick={loadNestedSample} variant="ghost">
+          <Layers className="w-4 h-4 mr-2" />
+          嵌套示例
+        </Button>
         <Button onClick={clearAll} variant="ghost">
           <RotateCcw className="w-4 h-4 mr-2" />
           清空
         </Button>
+        <div className="flex items-center space-x-2 ml-auto">
+          <Switch
+            id="nested-mode"
+            checked={autoUnescape}
+            onCheckedChange={setAutoUnescape}
+          />
+          <Label htmlFor="nested-mode" className="cursor-pointer">嵌套解析</Label>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
