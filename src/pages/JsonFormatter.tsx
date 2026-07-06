@@ -19,23 +19,50 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-function parseNestedJson(input: string, maxDepth = 10): any {
-  let result: any = JSON.parse(input);
-  let depth = 0;
-  while (
-    depth < maxDepth &&
-    typeof result === "string" &&
-    ((result.trimStart().startsWith("{") && result.trimEnd().endsWith("}")) ||
-      (result.trimStart().startsWith("[") && result.trimEnd().endsWith("]")))
+function tryParseJson(value: string): any | null {
+  const trimmed = value.trim();
+  if (
+    (trimmed.startsWith("{") && trimmed.endsWith("}")) ||
+    (trimmed.startsWith("[") && trimmed.endsWith("]"))
   ) {
     try {
-      result = JSON.parse(result);
-      depth++;
+      return JSON.parse(trimmed);
     } catch {
-      break;
+      return null;
     }
   }
-  return result;
+  return null;
+}
+
+function deepParseNested(value: any, maxDepth = 10, currentDepth = 0): any {
+  if (currentDepth >= maxDepth) return value;
+
+  if (typeof value === "string") {
+    const parsed = tryParseJson(value);
+    if (parsed !== null) {
+      return deepParseNested(parsed, maxDepth, currentDepth + 1);
+    }
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => deepParseNested(item, maxDepth, currentDepth + 1));
+  }
+
+  if (value !== null && typeof value === "object") {
+    const result: Record<string, any> = {};
+    for (const key of Object.keys(value)) {
+      result[key] = deepParseNested(value[key], maxDepth, currentDepth + 1);
+    }
+    return result;
+  }
+
+  return value;
+}
+
+function parseNestedJson(input: string, maxDepth = 10): any {
+  const parsed = JSON.parse(input);
+  return deepParseNested(parsed, maxDepth, 0);
 }
 
 export default function JsonFormatter() {
