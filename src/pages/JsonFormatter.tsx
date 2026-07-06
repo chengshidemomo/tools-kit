@@ -5,7 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@#$#hooks/use-toast";
+import { useToast } from "@/hooks/use-toast";
 import {
   Copy,
   Download,
