@@ -173,7 +173,7 @@ export default function JsonFormatter() {
           <Maximize2 className="w-4 h-4 mr-2" />
           格式化
         </Button>
-        <Button onClick={minifyJsonProperty} variant="outline">
+        <Button onClick={minifyJson} variant="outline">
           <Minimize2 className="w-4 h-4 mr-2" />
           压缩
         </Button>
