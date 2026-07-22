@@ -1,3 +1,4 @@
+import { copyText } from "@/lib/clipboard";
 import { useState } from "react";
 import { format } from "sql-formatter";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -69,7 +70,7 @@ export default function SqlFormatter() {
   };
 
   const copy = (text: string) => {
-    navigator.clipboard.writeText(text);
+    copyText(text);
     toast({ title: "已复制", description: "内容已复制到剪贴板" });
   };
 
