@@ -1,3 +1,4 @@
+import { copyText } from "@/lib/clipboard";
 import { useState } from "react";
 import { v4 as uuidv4, v7 as uuidv7 } from "uuid";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -57,7 +58,7 @@ export default function IdGenerator() {
   };
 
   const copy = (text: string) => {
-    navigator.clipboard.writeText(text);
+    copyText(text);
     toast({ title: "已复制" });
   };
 

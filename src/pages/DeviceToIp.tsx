@@ -1,3 +1,4 @@
+import { copyText } from "@/lib/clipboard";
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ export default function DeviceToIp() {
   };
 
   const copy = () => {
-    navigator.clipboard.writeText(output);
+    copyText(output);
     toast({ title: "已复制", description: "内容已复制到剪贴板" });
   };
 

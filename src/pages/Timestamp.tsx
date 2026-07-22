@@ -1,3 +1,4 @@
+import { copyText } from "@/lib/clipboard";
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -34,7 +35,7 @@ export default function Timestamp() {
   })();
 
   const copy = (text: string) => {
-    navigator.clipboard.writeText(text);
+    copyText(text);
     toast({ title: "已复制" });
   };
 
