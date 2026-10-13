@@ -197,15 +197,15 @@ export default function JsonFormatter() {
 
       {/* Action Buttons */}
       <div className="flex flex-wrap items-center gap-3">
-        <Button onClick={formatJson} className="bg-gradient-primary hover:bg-primary-hover">
+        <Button onClick={formatJson} variant="success">
           <Maximize2 className="w-4 h-4 mr-2" />
           格式化
         </Button>
-        <Button onClick={minifyJson} variant="outline">
+        <Button onClick={minifyJson} variant="success">
           <Minimize2 className="w-4 h-4 mr-2" />
           压缩
         </Button>
-        <Button onClick={validateJson} variant="outline">
+        <Button onClick={validateJson} variant="success">
           <CheckCircle className="w-4 h-4 mr-2" />
           验证
         </Button>

@@ -122,7 +122,7 @@ export default function Base64() {
             </div>
 
             <div className="flex gap-3">
-              <Button onClick={processString} className="bg-gradient-primary hover:bg-primary-hover">
+              <Button onClick={processString} variant="success">
                 <Code className="w-4 h-4 mr-2" />
                 {operation === 'encode' ? '编码' : '解码'}
               </Button>

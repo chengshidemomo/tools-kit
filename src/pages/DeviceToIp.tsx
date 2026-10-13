@@ -46,7 +46,7 @@ export default function DeviceToIp() {
       <Card className="bg-gradient-card border-0 shadow-soft">
         <CardContent className="p-6">
           <div className="flex flex-wrap gap-3">
-            <Button onClick={convert} className="bg-gradient-primary hover:bg-primary-hover">
+            <Button onClick={convert} variant="success">
               <Network className="w-4 h-4 mr-2" />
               转换
             </Button>
