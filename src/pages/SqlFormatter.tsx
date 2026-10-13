@@ -215,9 +215,8 @@ export default function SqlFormatter() {
                     </Button>
                   </div>
                 </div>
-                <Button onClick={convertToInList} className="bg-gradient-primary hover:bg-primary-hover">
-                  <List className="w-4 h-4 mr-2" />
-                  转换为IN列表
+                <Button onClick={convertToInList} variant="outline">
+                  转换
                 </Button>
                 <Button onClick={() => setInListInput(inListSample)} variant="ghost">
                   <FileText className="w-4 h-4 mr-2" />
