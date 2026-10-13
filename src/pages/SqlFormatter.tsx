@@ -26,6 +26,7 @@ export default function SqlFormatter() {
   // IN列表功能状态
   const [inListInput, setInListInput] = useState("");
   const [inListOutput, setInListOutput] = useState("");
+  const [quoteStyle, setQuoteStyle] = useState<"single" | "double">("single");
 
   const { toast } = useToast();
 
@@ -55,18 +56,30 @@ export default function SqlFormatter() {
     }
   };
 
+  const buildInList = (style: "single" | "double", input: string) => {
+    const quote = style === "single" ? "'" : '"';
+    const values = input
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line !== "")
+      .map((line) => quote + line + quote);
+    return { text: values.join(","), count: values.length };
+  };
+
   const convertToInList = () => {
-    const lines = inListInput.split("\n");
-    const cleaned: string[] = [];
-    for (const line of lines) {
-      const trimmed = line.trim();
-      if (trimmed !== "") {
-        cleaned.push("'" + trimmed + "'");
-      }
+    const { text, count } = buildInList(quoteStyle, inListInput);
+    setInListOutput(text);
+    toast({
+      title: "转换完成",
+      description: `已处理 ${count} 项，使用${quoteStyle === "single" ? "单" : "双"}引号`,
+    });
+  };
+
+  const switchQuoteStyle = (style: "single" | "double") => {
+    setQuoteStyle(style);
+    if (inListOutput !== "") {
+      setInListOutput(buildInList(style, inListInput).text);
     }
-    const result = cleaned.join(",");
-    setInListOutput(result);
-    toast({ title: "转换完成", description: `已处理 ${cleaned.length} 项` });
   };
 
   const copy = (text: string) => {
@@ -182,7 +195,26 @@ export default function SqlFormatter() {
         <TabsContent value="inlist" className="space-y-6 mt-0">
           <Card className="bg-gradient-card border-0 shadow-soft">
             <CardContent className="p-6">
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-2 mr-2">
+                  <span className="text-sm text-muted-foreground">引号</span>
+                  <div className="flex gap-2">
+                    <Button
+                      size="sm"
+                      variant={quoteStyle === "single" ? "default" : "outline"}
+                      onClick={() => switchQuoteStyle("single")}
+                    >
+                      单引号 '
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant={quoteStyle === "double" ? "default" : "outline"}
+                      onClick={() => switchQuoteStyle("double")}
+                    >
+                      双引号 "
+                    </Button>
+                  </div>
+                </div>
                 <Button onClick={convertToInList} className="bg-gradient-primary hover:bg-primary-hover">
                   <List className="w-4 h-4 mr-2" />
                   转换为IN列表
