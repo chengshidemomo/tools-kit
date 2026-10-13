@@ -124,11 +124,11 @@ export default function SqlFormatter() {
                   ))}
                 </div>
                 <div className="flex gap-3 ml-auto">
-                  <Button onClick={beautify} className="bg-gradient-primary hover:bg-primary-hover">
+                  <Button onClick={beautify} variant="success">
                     <Sparkles className="w-4 h-4 mr-2" />
                     美化
                   </Button>
-                  <Button onClick={minify} variant="outline">
+                  <Button onClick={minify} variant="success">
                     压缩
                   </Button>
                   <Button onClick={() => setBeautifyInput(beautifySample)} variant="ghost">
@@ -215,7 +215,7 @@ export default function SqlFormatter() {
                     </Button>
                   </div>
                 </div>
-                <Button onClick={convertToInList} variant="outline">
+                <Button onClick={convertToInList} variant="success">
                   转换
                 </Button>
                 <Button onClick={() => setInListInput(inListSample)} variant="ghost">

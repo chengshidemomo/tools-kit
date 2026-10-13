@@ -128,7 +128,7 @@ export default function RandomString() {
           </div>
 
           <div className="flex gap-3">
-            <Button onClick={generate} className="bg-gradient-primary hover:bg-primary-hover">
+            <Button onClick={generate} variant="success">
               <Shuffle className="w-4 h-4 mr-2" />
               生成
             </Button>

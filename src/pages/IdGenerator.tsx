@@ -92,7 +92,7 @@ export default function IdGenerator() {
                 <Label>数量</Label>
                 <Input type="number" min={1} max={1000} value={count} onChange={(e) => setCount(+e.target.value || 1)} className="w-32" />
               </div>
-              <Button onClick={genUuids} className="bg-gradient-primary hover:bg-primary-hover ml-auto">
+              <Button onClick={genUuids} variant="success" className="ml-auto">
                 <Sparkles className="w-4 h-4 mr-2" />
                 生成
               </Button>
@@ -117,7 +117,7 @@ export default function IdGenerator() {
                 <Label>数量</Label>
                 <Input type="number" min={1} max={1000} value={count} onChange={(e) => setCount(+e.target.value || 1)} className="w-32" />
               </div>
-              <Button onClick={genSnowflakes} className="bg-gradient-primary hover:bg-primary-hover ml-auto">
+              <Button onClick={genSnowflakes} variant="success" className="ml-auto">
                 <Sparkles className="w-4 h-4 mr-2" />
                 生成
               </Button>

@@ -234,7 +234,7 @@ export default function StringEscape() {
           </div>
 
           <div className="flex flex-wrap gap-3 mt-4">
-            <Button onClick={processString} className="bg-gradient-primary hover:bg-primary-hover">
+            <Button onClick={processString} variant="success">
               <Zap className="w-4 h-4 mr-2" />
               {operation === 'encode' ? '编码' : '解码'}
             </Button>
