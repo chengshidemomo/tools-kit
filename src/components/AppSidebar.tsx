@@ -24,6 +24,7 @@ import {
   Network,
   QrCode,
   Regex,
+  ShieldCheck,
   Shuffle,
   Sparkles,
   Timer,
@@ -40,6 +41,7 @@ const toolsItems = [
   { title: "字符串转义", url: "/string-escape", icon: FileText, description: "字符串编码转换" },
   { title: "随机字符串", url: "/random-string", icon: Shuffle, description: "生成随机密码/Token" },
   { title: "设备编号转IP", url: "/device-to-ip", icon: Network, description: "15位编号转IP" },
+  { title: "IP白名单转换", url: "/ip-whitelist", icon: ShieldCheck, description: "Nginx allow / JSON" },
   { title: "Base64编解码", url: "/base64", icon: Code, description: "Base64转换" },
   { title: "URL编解码", url: "/url-encode", icon: Link, description: "URL编码转换" },
 ];

@@ -9,6 +9,7 @@ import {
   FileText,
   Link,
   Network,
+  ShieldCheck,
   Shuffle,
   Sparkles,
   Zap,
@@ -55,6 +56,7 @@ const quickTools = [
   { title: "随机字符串", icon: Shuffle, url: "/random-string" },
   { title: "Base64编解码", icon: Code, url: "/base64" },
   { title: "URL编解码", icon: Link, url: "/url-encode" },
+  { title: "IP白名单", icon: ShieldCheck, url: "/ip-whitelist" },
 ];
 
 const stats = [
