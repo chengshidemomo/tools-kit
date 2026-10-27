@@ -18,6 +18,7 @@ import Timestamp from "./pages/Timestamp";
 import CronExpression from "./pages/CronExpression";
 import RegexTester from "./pages/RegexTester";
 import IdGenerator from "./pages/IdGenerator";
+import IpWhitelist from "./pages/IpWhitelist";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
             <Route path="/cron" element={<CronExpression />} />
             <Route path="/regex" element={<RegexTester />} />
             <Route path="/id-generator" element={<IdGenerator />} />
+            <Route path="/ip-whitelist" element={<IpWhitelist />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
